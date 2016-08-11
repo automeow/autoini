@@ -30,7 +30,7 @@ module Autoini
     end
 
     def to_a
-      [title, lines.map(&:to_a).reject(&:empty?).to_h]
+      [title.to_sym, lines.map(&:to_a).reject(&:empty?).to_h]
     end
 
     def ==(e)

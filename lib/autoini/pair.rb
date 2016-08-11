@@ -14,7 +14,7 @@ module Autoini
     end
 
     def to_a
-      [key, value]
+      [key.to_sym, value]
     end
 
     def ==(e)
