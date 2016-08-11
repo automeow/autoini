@@ -10,6 +10,10 @@ module Autoini
       "#{Autoini.comment} #{@comment}"
     end
 
+    def to_a
+      []
+    end
+
     def ==(e)
       e.is_a?(Comment) && comment == e.comment
     end

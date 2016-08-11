@@ -20,9 +20,22 @@ module Autoini
   class << self
     attr_accessor :newline, :comment
 
+    def read(file)
+      Contents.hash(File.open(file, 'rb', &:read))
+    end
+
+    def write(file, data)
+      File.write(file, Contents[data].to_s)
+    end
+
+    def merge(file, data)
+      Contents.parse((File.open(file, 'rb', &:read) rescue nil))
+        .merge!(Contents[data]).tap{ |c| File.write(file, c.to_s) }.to_h
+    end
+
     def escape(text)
       ''.tap do |b|
-        text.each_char do |c|
+        text.to_s.each_char do |c|
           b << MAP_CHARS[c] and next if MAP_CHARS[c]
           b << '\\' if SPECIAL.include?(c)
           b << c

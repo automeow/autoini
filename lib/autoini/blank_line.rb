@@ -8,6 +8,10 @@ module Autoini
       e.is_a?(BlankLine)
     end
 
+    def to_a
+      []
+    end
+
     def self.parse_with_comment(line)
       parse(line)
     end

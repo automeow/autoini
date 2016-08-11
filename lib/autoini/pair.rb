@@ -13,6 +13,10 @@ module Autoini
       line_comment("#{Autoini.escape(key)}=#{Autoini.escape(value)}")
     end
 
+    def to_a
+      [key, value]
+    end
+
     def ==(e)
       e.is_a?(Pair) && e.key == key && e.value == value && e.comment == comment
     end
